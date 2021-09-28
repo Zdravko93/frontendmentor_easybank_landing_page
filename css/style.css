@@ -1,0 +1,994 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+
+/* ------------------------------------ global styles ------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Public Sans', sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+/* ------------------------------------ header styles ------------------------------------------------- */
+.header {
+    overflow-x: hidden;
+    background: hsl(0, 0%, 100%);
+}
+
+.nav-bar {
+    padding: 1em 1.5em;
+    background: hsl(0, 0%, 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding-top: 2em;
+}
+
+.burger-menu,
+button,
+.cta {
+    cursor: pointer;
+}
+
+.burger-menu {
+    width: 1.5625rem;    /* 25 px*/
+}
+
+.burger-menu span {
+    width: 1.5625rem;
+    height: 2px;
+    display: block;
+    background: hsl(233, 26%, 24%);
+
+    transition: all 300ms ease-in-out;
+}
+
+.burger-menu.open span:first-child {
+    transform: rotate(45deg) translateY(3px);
+}
+
+.burger-menu.open span:nth-child(2) {
+    display: none;
+}   
+
+.burger-menu.open span:last-child {
+    transform: rotate(-45deg) translateY(-3px);
+}
+
+.burger-menu span:not(:last-child) {
+    margin-bottom: 3px;
+}
+
+.nav-link,
+button,
+.cta {
+    font-size: 0.8rem;  /* 13px */
+   
+}
+
+.nav-link {
+    text-decoration: none;
+    color: hsl(233, 8%, 62%);
+    position: relative;
+
+    transition: color 300ms ease-in-out;
+}
+
+.nav-link::after {
+    content: " ";
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: -22px;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.nav-link:hover::after {
+    background: hsl(136, 65%, 51%);
+    opacity: 1;
+}
+
+.nav-link:hover {
+    color: hsl(233, 26%, 24%);
+}
+
+.nav-link:not(:last-child) {
+    margin-right: 0.8125rem;
+}
+
+
+button,
+.cta {
+    border: 0;
+    outline: none;
+    display: block;
+    background: linear-gradient(to right, hsl(136, 65%, 51%),
+                                          hsl(192, 70%, 51%));
+    color: hsl(0, 0%, 100%);
+    font-weight: 400;
+    padding: .7em 1.7em;
+    border-radius: 50px;
+    transition: opacity 300ms ease-in-out;
+}
+
+button:hover,
+.cta:hover {
+    opacity: .75;
+}
+
+.hero-img {
+    position: relative;
+    background: url('../images/bg-intro-mobile.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+    height: 35vh;
+    width: 100%;
+}
+
+.hero-img::before {
+    position: absolute;
+    content: " ";
+    background: url('../images/image-mockups.png');
+    background-repeat: no-repeat;
+    background-size: 92%;
+    background-position: center bottom;
+    height: 100%;
+    width: 100%;
+}
+
+.mobile-menu-links {
+    position: absolute;
+    height: 93%;
+    width: 90%;
+    border-radius: 3.5px;
+    background: hsl(0, 0%, 100%);
+    top: 1em;
+    transform: translateX(150%);
+        
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.mobile-menu-links.display {
+    right: 50%;
+    transform: translateX(50%);
+
+    opacity: 1;
+}
+
+.mobile-links {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: hsl(233, 26%, 24%);
+    line-height: 62.5px;
+
+    position: relative;
+    z-index: 99;
+}
+
+.mobile-links::after {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: hsl(0, 0%, 100%);
+    height: 100%;
+
+    z-index: -1;
+    transition: background-image 900ms ease-in-out;
+}
+
+.mobile-links:hover::after {
+    background-image: linear-gradient(to right, hsl(192, 70%, 51%), hsl(136, 65%, 51%));
+}
+
+header.overlay {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(hsl(233, 26%, 24%), transparent);
+}
+
+h1,
+h2,
+h3 {
+    color: hsl(233, 26%, 24%);
+    margin-top: 0;
+}
+.hero-text {
+    text-align: center;
+    padding: 0.5em;
+    padding-bottom: 2em;
+    line-height: 1.15;
+    margin: auto;
+    max-width: 22rem;
+}
+
+.hero-text h1 {
+    margin-top: 1rem;
+    font-weight: 300;
+    font-size: 2.6rem;
+    color: hsl(233, 26%, 24%);
+}
+
+.hero-text p {
+    color: hsl(233, 8%, 62%);
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+.hero-text .cta {
+    display: block;
+    margin: 3em auto;
+    padding: 0.7em 1.8em;
+}
+/* ------------------------------------ header => responsive styles ------------------------------------------------- */
+
+/* HIDE FOR DESKTOP - MOBILE VIEW */
+@media screen and (max-width: 50em) { /* 800px => down */
+    
+    .nav-list {
+        display: none;
+    }
+
+    button,
+    .cta {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 40.625em) {
+    .hero-text {
+        max-width: 90%;
+    }
+
+    .hero-text h1 {
+        font-size: 2.65rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        line-height: 1.65;
+    }
+}
+
+
+
+/* HIDE FOR MOBILE - DESKTOP VIEW */
+@media screen and (min-width: 50em) {  /* 800px => up*/
+   
+    .burger-menu {
+        display: none;
+    }
+
+    .nav-bar {
+        padding: .7em 3em;
+    }
+
+    .logo {
+        margin-right: 3rem;
+    }
+
+    .cta {
+        margin-left: 3rem;
+    }
+
+    .nav-link,
+    .cta {
+        font-size: 0.9375rem;  /* 15px */
+       
+    }
+
+    .cta {
+        padding: .55em 1.3em;
+    }
+}
+
+@media screen and (min-width: 64em) {  /* 1024+ px => up */
+   
+    .nav-link:not(:last-child) {      /* 25px */
+        margin-right: 1.5625rem;   
+    }
+
+    .cta {
+        padding: .7em 2em;
+    }
+
+}
+
+@media screen and (min-width: 65.9375em){  /* 1066 px => up*/
+
+    .hero-text h1 {
+        font-size: 3.1rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+}   
+
+@media screen and (min-width: 87.25em) {   /* 1396px => */
+    .hero-text h1 {
+        font-size: 3.4rem;
+    }
+}
+
+@media screen and (min-width: 95em) {    /* 1520px => */
+    .hero-text h1 {
+        font-size: 4.3rem;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 100em) {  /* 1600px => up */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to bottom, hsl(0, 0%, 98%), 
+                                               hsl(0, 0%, 100%));
+
+    }
+ 
+    .hero-img {
+        background-repeat: no-repeat;
+        background-image: none;
+
+        height: 70vh;
+        flex: 3;
+        order: 2;
+    }
+
+    .hero-img::before {  
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 100%;
+        background: url('../images/bg-intro-desktop.svg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: -27% 110%;
+    }
+
+    .hero-img::after {  
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 100%;
+        background: url('../images/image-mockups.png');
+        background-repeat: no-repeat;
+        background-size: 90%;
+        background-position: 250% 50%;
+    }
+
+       .hero-text {
+        margin-top: 0;
+        height: 50vh;
+        text-align: left;
+        padding: 7em 2.5em 7em 2.5em;
+       
+        flex: 2;
+        order: 1;
+     }
+ 
+     .hero-text h1 {
+         font-size: 2.5rem;
+     }
+ 
+     .hero-text p {
+         font-size: 1rem;
+     }
+ 
+     .hero-text .cta {
+        margin-left: 0;
+      
+     }
+}
+/* --------------------------------------------------------------------------------------- */
+
+/* ------------------------------------ main content => responsive styles ------------------------------------------------- */
+ .easybank-main-container {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center; 
+    background-image: linear-gradient(to bottom, hsl(0, 0%, 98%), transparent);
+}
+
+.easybank-info {
+    max-width: 22em;  /* !!!!  proveriti */
+    margin: auto;
+}
+
+.easybank-info:first-child {
+    padding-bottom: 3.25em;
+}
+
+.easybank-info:not(:first-child){
+    padding-bottom: 2em;
+}
+
+.easybank-info:last-child {
+    padding-bottom: 3em;
+}
+
+.easybank-info img {
+    padding-bottom: 1em;
+}
+
+h2,
+.main-header {
+    font-weight: 400;    
+}
+
+.main-header {
+    margin: 0 auto;
+    padding-top: 2em;
+    font-size: 2rem;
+    max-width: 300px;  /* !!!! PROVERITI KASNIJE KOD RESPONSIVE ZA DESKTOP */
+    margin-bottom: 1.5rem;
+}
+
+.small-header {
+    font-size: 1.1rem;
+}
+
+.easybank-info p {
+    font-weight: 300;
+    color: hsl(233, 8%, 62%);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    max-width: 20rem;
+
+    margin: auto;   
+}
+
+
+/* ------------------------------------ easybank main info => responsive styles ------------------------------------------------- */
+@media screen and (min-width: 50em) {
+    .easybank-info {
+        max-width: 45.75em;
+    }
+     
+    .main-header {
+        font-size: 2.1rem;
+    }
+
+    .easybank-info p {
+        font-size: 1.05rem;
+        max-width: 45rem;
+    }
+}
+
+
+
+
+@media screen and (min-width: 62.5em) {  /* 1000px => up */
+    .easybank-main-container {
+        margin-top: 0;
+        padding-top: 0;
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto auto;
+
+        grid-template-areas: 
+        "easybank-header-wrap easybank-header-wrap easybank-header-wrap easybank-header-wrap"
+        "online-banking simple-budgeting fast-onboarding open-api";
+        grid-gap: 5px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .easybank-info {
+        padding: 0.5em;
+        text-align: left;
+    }
+
+    .easybank-info p {
+        font-size: 1rem;
+    }
+
+    .easybank-info:first-child {
+        grid-area: easybank-header-wrap;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .easybank-info:last-child {
+        padding-bottom: 0;
+    }
+
+    .easybank-info:not(:first-child) {
+        margin-top: 0;
+    }
+
+    .main-header {
+        margin-left: 0;
+        max-width: 100%;
+        font-size: 1.8rem;
+    }
+
+    .easybank-info:first-child p {
+        width: 35rem;
+    }
+
+    .easybank:nth-child(2) {
+        grid-area: online-banking;
+    }
+
+    .easybank:nth-child(3) {
+        grid-area: simple-budgeting;
+    }
+
+    .easybank:nth-child(4) {
+        grid-area: fast-onboarding;
+    }
+
+    .easybank:nth-child(5) {
+        grid-area: open-api;
+    }
+
+}
+
+@media screen and (min-width: 75em) {  /*1200px => up*/
+    .easybank-info:first-child p {
+        width: 40rem;       
+    }
+}
+
+@media screen and (min-width: 100em) { /*1600px => up*/
+    .easybank-info:first-child  p {
+        width: 62.5rem;
+        max-width: 62.5rem;
+    }
+}
+
+@media screen and (min-width: 112.5em) { /*1800px => up*/
+    
+    .main-header {
+        font-size: 1.65rem;
+    }
+
+    .small-header {
+        font-size: 1.25rem;
+    }
+
+    .easybank-info p {
+        font-size: 1.11rem;
+    }
+}
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+
+/* ------------------------------------ articles section ---------------------------------------------------------------------- */
+.articles {
+    margin: auto;
+    height: 50vh;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    padding-left: 3em;
+    padding-right: 3em;
+    background: linear-gradient(to bottom, transparent, hsl(0, 0%, 98%));
+}
+
+.flex-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.articles h3 {
+    margin-top: 3em;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+
+.flex-article {
+    padding-top: 0;
+    margin-top: 1em;
+}
+
+.flex-article:first-child {
+    margin-top: 0;
+}
+
+.flex-article:last-child {
+    margin-bottom: 4em;
+}
+
+/* fixed */
+.flex-img {
+    height: 12.185rem;
+}
+
+
+
+.flex-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.flex-text {   
+    text-align: left;
+    padding: 0.5em 1em 1em 1em;
+    background: hsl(0, 0%, 100%); 
+}
+
+
+.flex-text span,
+.flex-text p {
+    color: hsl(233, 8%, 62%);
+}
+
+.flex-text span {
+    font-size: 0.64rem;
+    font-weight: 300;
+}
+
+.flex-text h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.flex-text p {
+    margin-top: 0;
+    padding-top: 0.5em;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+/* ---------------------------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------ articles section => responsive styles ------------------------------------- */
+@media screen and (min-width: 50em) {  /* 800px => up*/
+    .flex-container h3 {
+        font-size: 2rem;
+    }
+
+    .flex-text span {
+        font-size: 0.8rem;
+    }
+
+    .flex-text h4 {
+        font-size: 1.5rem;
+    }
+
+    .flex-text p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 62.5em) { /* 1000px => up */
+    .articles h3 {
+        text-align: left;
+    }
+    
+    .flex-container {
+        flex-direction: row;
+        align-items: baseline;
+
+        gap: 15px;
+    }
+    
+    .flex-img img {
+        width: auto;
+        width: 100%;
+    }
+
+    .flex-text {
+        text-align: left;
+        flex: 1;
+        height: 100%;
+    }
+
+    .flex-text span {
+        font-size: 0.6rem;
+    }
+
+    .flex-text h4 {
+        font-size: 0.9rem;
+    }
+
+    .flex-text p {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (min-width: 75em) { /* 1200px => up */
+    .flex-text span {
+        font-size: 0.81rem;
+    }
+
+    .flex-text h4 {
+        font-size: 1.2rem;
+    }
+
+    .flex-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (min-width: 87.5em) { /* 1400px => up */
+    .flex-text span {
+        font-size: 0.91rem;
+    }
+
+    .flex-text h4 {
+        font-size: 1.31rem;
+    }
+
+    .flex-text p {
+        font-size: 1.1rem;
+    }
+  }
+/* ---------------------------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------ footer section --------------------------------------- */
+.footer {
+    background: hsl(233, 26%, 24%);
+    height: auto;
+}
+
+.footer-container {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 2em 3em 1.5em 3em;
+
+    display: grid;
+    grid-template-columns: auto;
+   
+}
+
+.logo,
+.footer-social,
+.footer-button,
+.footer-copyright {
+    justify-self: center;
+}
+
+.logo {
+    margin-bottom: 1.5em;
+}
+
+.logo img {
+    height: 1rem;
+}
+
+.footer-social {
+    margin-bottom: 1.5em;
+}
+
+.footer-social:not(:last-child) a {
+    margin-right: 0.5em;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-size: 0.77rem;
+    color: hsl(0, 0%, 100%);
+}
+
+.col1,
+.col2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.col1 {
+    margin-bottom: 0;
+
+}
+
+.col-2 {
+    margin-top: 0;
+}
+
+.col1 a,
+.col2 a {
+    margin-bottom: 0.8em;
+}
+
+.col2:last-child a {
+    margin-bottom: 0;
+} 
+
+.footer-button a {
+    text-decoration: none;
+    margin-top: 1.5em;
+    display: inline-block;
+    color: hsl(0, 0%, 100%);
+    font-weight: 300;
+    font-size: 0.77rem;
+    background: linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%));
+    border-radius: 50px;
+    padding: 0.7rem 1.8rem;
+}
+
+.footer-copyright {
+    margin-top: 1.5em;
+    color: hsl(233, 8%, 62%);
+    font-size: 0.77rem;
+}
+/* ---------------------------------------------------------------------------- */
+
+/* ------------------------------------ footer section => responsive styles --------------------------------------- */
+@media screen and (min-width: 50em) { /* 800px => up */
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media screen and (min-width: 62.5em) { /* 1000px => up */
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) 2fr;
+        grid-template-rows: repeat(2, 1fr) /* ili 1fr auto */;
+        grid-template-areas: "logo links1 links2 cta cta"
+                             "social links1 links2 copyright copyright";
+
+
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .logo img {
+        height: 0.9rem;
+    }
+
+    .footer-social {
+        margin-top: 0.5em;
+        margin-left: -1em;
+    }
+
+    .footer-social:not(:last-child) a {
+        margin-right: 0.3em;
+        justify-self: center;
+    }
+
+    .footer-social img {
+        height: 1rem;
+    }
+
+    /* .footer-links {
+        justify-items: start;
+    } */
+
+    .footer-links a {
+      font-size: 0.7rem;
+      line-height: 1.7;
+      color: hsl(0, 0%, 98%);
+    }
+
+    .col1,
+    .col2 {
+        align-items: start;
+    }
+
+    .col1 {
+        grid-area: links1;
+        margin-left: 3em;
+    }
+
+    .col2 {
+        grid-area: links2;
+    }
+
+    .footer-button,
+    .footer-copyright {
+        justify-self: end;
+    }
+
+    .footer-button {
+        grid-area: cta;
+        margin-top: 0.2em;
+    }
+
+    .footer-button a {
+        margin-top: 0;
+    }
+
+    .footer-copyright {
+        grid-area: copyright;
+        font-size: 0.7rem;
+        margin-top: 0;
+    }
+
+    .copyright-text {
+        display: inline-block;
+        margin-top: 0.8em;
+    }
+}
+
+
+@media screen and (min-width: 75em) {  /* 1200px => up*/
+    .logo img {
+        height: 1.1rem;
+    }
+
+    .footer-social {
+        margin-left: -2em;
+    }
+
+    .footer-social img {
+        height: 1.1rem;
+    }
+    
+    .footer-links a,
+    .footer-button a,
+     .copyright-text {
+        font-size: 0.82rem;
+      }
+    
+      .footer-button {
+          margin-top: 0.3em;
+      }
+
+      .copyright-text {
+          margin-top: 1.3em;
+      }
+}
+
+@media screen and (min-width: 100em) {  /* 1600px => up*/
+    .logo img {
+        height: 1.22rem;
+    }
+
+    .footer-social img {
+        height: 1.22rem;
+    }
+
+    .footer-links a,
+    .footer-button a,
+     .copyright-text {
+        font-size: 0.9rem;
+      }
+
+      .footer-button {
+          margin-top: 0.6em;
+      }
+
+      .copyright-text {
+          margin-top: 1.5em;
+      }
+}
+/* ---------------------------------------------------------------------------- */
+
